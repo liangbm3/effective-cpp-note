@@ -1,4 +1,4 @@
-## 成对使用 new 和 delete 时要采取相同形式
+## 条款16：成对使用 new 和 delete 时要采取相同形式
 
 这是 Effective C++ 的第 16 个条款，Use the same form in corresponding uses of new and delete，中文翻译为：**成对使用 new 和 delete 时要采取相同形式。**
 
