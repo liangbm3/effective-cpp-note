@@ -1,6 +1,6 @@
 - <strong>1. 让自己习惯 C++</strong>
   * [条款01：视 C++ 为一个语言联邦](chapter1/条款01：视%20C++%20为一个语言联邦.md)
-  * [条款02：尽量以 const，enum，inline 替换 #define](chapter1/条款02：尽量以%20const%EF%BC%8Cenum%EF%BC%8Cinline%20替换%20%23define.md)
+  * [条款02：尽量以 const，enum，inline 替换 #define](chapter1/条款02：尽量以%20const%EF%BC%8Cenum%EF%BC%8Cinline%20替换%20define.md)
   * [条款03：尽可能使用 const](chapter1/条款03：尽可能使用%20const.md)
   * [条款04：确定对象被使用前已先被初始化](chapter1/条款04：确定对象被使用前已先被初始化.md)
 - <strong>2. 构造/析构/赋值运算</strong>
