@@ -36,3 +36,41 @@ C++ 之所以这么设计是出于安全的考虑。如果 C++ 允许在 `Transa
 - 进入 `Transaction` 析构函数： 当基类 `~Transaction()` 开始执行时，`BuyTransaction` 的析构函数已经执行完毕。`BuyTransaction` 的成员变量已被销毁，不再有效。
 - 对象的类型： 此时，对象 `b` 的类型被 C++ 视为退化回了 `Transaction`。
 - 调用虚函数： 如果 `~Transaction()` 调用了 `logTransaction()`，它只会调用 `Transaction::logTransaction()` 版本，绝不会调用 `BuyTransaction` 的版本（那个版本所依赖的成员数据已经不存在了）。
+
+如果基类构造时确实需要派生类提供的信息，可以让派生类在成员初始化列表中，将这些信息作为参数传递给基类构造函数。
+```cpp
+// 解决方案：
+class Transaction { // Base class
+public:
+    // 1. 接受派生类传来的信息
+    explicit Transaction(const std::string& logInfo) {
+        log(logInfo); // log 现在是一个普通的非虚函数
+    }
+    // ...
+private:
+    void log(const std::string& message); // 非虚函数
+};
+
+class BuyTransaction : public Transaction { // Derived class
+public:
+    BuyTransaction( /*...参数...*/ )
+      : Transaction( createLogString(/*...参数...*/) ) // 2. 将信息向上传递
+    {
+        // ... BuyTransaction 自己的构造 ...
+    }
+    // ...
+private:
+    // 3. 使用一个 private static 辅助函数来创建这些信息
+    //    它在对象构造前被调用，是安全的
+    static std::string createLogString(/*...参数...*/) {
+        return "Creating BuyTransaction...";
+    }
+};
+```
+
+之所以使用 `private static` 辅助函数，是因为在执行成员初始化列表时，`BuyTransaction` 对象本身还未构造完成，其非静态成员变量处于未定义状态。 `static` 成员函数没有 `this` 指针，因此它无法意外访问到那些尚未初始化的非静态成员，这使得它成为在构造阶段准备数据的完美、安全的选择。
+
+总结：
+- 绝不在构造函数或析构函数中调用 `virtual` 函数。
+    - 因为在这两个阶段，对象的类型被视为当前正在执行构造/析构的那个基类，虚函数调用不会下降到派生类。
+    - 如果基类构造时需要派生类的信息，应让派生类通过成员初始化列表将信息传递给基类构造函数。

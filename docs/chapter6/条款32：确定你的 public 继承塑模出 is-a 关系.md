@@ -1,6 +1,6 @@
 ## 条款32：确定你的 public 继承塑模出 is-a 关系
 
-这是Effective C++的第 32 条款，Make sure public inheritance models "is-a"，中文翻译为：**确定你的 public 继承塑模出 is-a 关系。**
+**Make sure public inheritance models "is-a"**
 
 这是 C++ 面向对象编程中非常重要的一条规则，它强调 C++ 中的 `public` 继承，其唯一的含义就是 "is-a" 关系。当我们写下 `class Derived : public Base { ... };` 时，即是在向编译器和所有阅读代码的人做出一个承诺：每一个 `Derived` 类型的对象同时也是一个 `Base` 类型的对象。
 
