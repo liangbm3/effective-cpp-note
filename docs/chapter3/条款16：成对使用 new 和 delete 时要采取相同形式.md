@@ -1,6 +1,6 @@
 ## 条款16：成对使用 new 和 delete 时要采取相同形式
 
-这是 Effective C++ 的第 16 个条款，Use the same form in corresponding uses of new and delete，中文翻译为：**成对使用 new 和 delete 时要采取相同形式。**
+**Use the same form in corresponding uses of new and delete**
 
 这个条款的核心是 `new` 和 `delete` 的形式必须匹配。
 - 如果你使用 `new` 来分配单个对象，就必须使用 `delete` 来释放。

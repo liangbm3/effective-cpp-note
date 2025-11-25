@@ -1,6 +1,6 @@
 ## 条款17：以独立语句将 newed 对象置入智能指针
 
-这是 Effective C++ 的第 17 个条款，Store newed objects in smart pointers in standalone statements，中文翻译为：**以独立语句将 newed 对象置入智能指针。**
+**Store newed objects in smart pointers in standalone statements**
 
 文章举了一个经典的例子来说明这个规则的重要性：
 ```cpp

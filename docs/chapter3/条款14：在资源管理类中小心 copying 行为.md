@@ -1,6 +1,6 @@
 ## 条款14：在资源管理类中小心 copying 行为
 
-这是 Effective C++ 的第 14 个条款，Think carefully about copying behavior in resource-managing classes，中文翻译为：**在资源管理类中小心 copying 行为。**
+**Think carefully about copying behavior in resource-managing classes**
 
 当我们自己写一个 RAII 类时，比如书中提到的用于管理互斥锁的 Lock 类：
 ```cpp
